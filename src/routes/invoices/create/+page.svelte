@@ -832,44 +832,44 @@
 			<!-- Info Entitas: Bisnis & Klien (Satu Card dengan Sistem Tab) -->
 			<div class="card p-5 border border-slate-200/80 dark:border-slate-800 shadow-soft">
 				<!-- Tab Navigation Header -->
-				<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 mb-4 border-b border-slate-100 dark:border-slate-800">
-					<!-- Tab Buttons -->
-					<div class="inline-flex p-1 bg-slate-100 dark:bg-slate-800/90 rounded-xl">
-						<button
-							type="button"
-							class="flex items-center gap-2 py-1.5 px-3.5 rounded-lg text-xs font-semibold transition-all {activePartyTab === 'business'
-								? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-sm ring-1 ring-slate-200/60 dark:ring-slate-700/60'
-								: 'text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200'}"
-							on:click={() => (activePartyTab = 'business')}
-						>
-							<span class="flex h-5 w-5 items-center justify-center rounded-md bg-primary/10 text-primary dark:bg-primary-500/20 text-xs">
-								🏢
-							</span>
-							<span>Bisnis Anda</span>
-							{#if invoice.business?.name}
-								<span class="max-w-[110px] truncate text-[10px] font-normal text-slate-400">
-									({invoice.business.name})
-								</span>
-							{/if}
-						</button>
+				<div class="flex items-center justify-between gap-3 pb-3 mb-4 border-b border-slate-100 dark:border-slate-800">
+					<!-- Tab Buttons (Diperkecil, Disesuaikan, Dikosongkan Teks & Diganti Icon) -->
+					<div class="flex items-center gap-2.5">
+						<div class="inline-flex items-center gap-1 p-1 bg-slate-100 dark:bg-slate-800/90 rounded-xl">
+							<!-- Tab 1: Bisnis -->
+							<button
+								type="button"
+								class="relative flex h-8 w-8 items-center justify-center rounded-lg transition-all {activePartyTab === 'business'
+									? 'bg-white dark:bg-slate-900 text-primary dark:text-primary-400 shadow-sm ring-1 ring-slate-200/60 dark:ring-slate-700/60'
+									: 'text-slate-400 hover:text-slate-700 hover:bg-white/50 dark:text-slate-500 dark:hover:text-slate-200'}"
+								on:click={() => (activePartyTab = 'business')}
+								title="Bisnis Anda{invoice.business?.name ? ` (${invoice.business.name})` : ''}"
+								aria-label="Bisnis Anda"
+							>
+								<svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+								</svg>
+							</button>
 
-						<button
-							type="button"
-							class="flex items-center gap-2 py-1.5 px-3.5 rounded-lg text-xs font-semibold transition-all {activePartyTab === 'client'
-								? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-sm ring-1 ring-emerald-500/30 dark:ring-emerald-500/30'
-								: 'text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200'}"
-							on:click={() => (activePartyTab = 'client')}
-						>
-							<span class="flex h-5 w-5 items-center justify-center rounded-md bg-emerald-500/10 text-emerald-600 text-xs">
-								👤
-							</span>
-							<span>Klien Ditagih (PT)</span>
-							{#if invoice.client?.name}
-								<span class="max-w-[120px] truncate text-[10px] font-normal text-emerald-600 dark:text-emerald-400">
-									({invoice.client.name})
-								</span>
-							{/if}
-						</button>
+							<!-- Tab 2: Klien -->
+							<button
+								type="button"
+								class="relative flex h-8 w-8 items-center justify-center rounded-lg transition-all {activePartyTab === 'client'
+									? 'bg-white dark:bg-slate-900 text-emerald-600 dark:text-emerald-400 shadow-sm ring-1 ring-emerald-500/30 dark:ring-emerald-500/30'
+									: 'text-slate-400 hover:text-emerald-600 hover:bg-white/50 dark:text-slate-500 dark:hover:text-slate-200'}"
+								on:click={() => (activePartyTab = 'client')}
+								title="Klien Ditagih (PT){invoice.client?.name ? ` (${invoice.client.name})` : ''}"
+								aria-label="Klien Ditagih (PT)"
+							>
+								<svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+								</svg>
+							</button>
+						</div>
+
+						<span class="text-xs font-bold text-slate-700 dark:text-slate-300">
+							{activePartyTab === 'business' ? 'Bisnis Anda' : 'Klien Ditagih (PT)'}
+						</span>
 					</div>
 
 					<!-- Contextual Header Actions -->
