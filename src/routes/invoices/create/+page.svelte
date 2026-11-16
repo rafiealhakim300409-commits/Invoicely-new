@@ -791,62 +791,62 @@
 	<!-- Main Editor & Preview Grid -->
 	<div class="grid grid-cols-1 gap-6 lg:grid-cols-[11fr_13fr] xl:grid-cols-[10fr_14fr]">
 		<!-- Form Editor Column -->
-		<div class="space-y-5 {mobileView === 'preview' ? 'hidden lg:block' : ''}">
+		<div class="space-y-3.5 {mobileView === 'preview' ? 'hidden lg:block' : ''}">
 			<!-- Rincian Nomor & Tanggal -->
-			<div class="card p-5">
-				<div class="flex items-center justify-between mb-3">
+			<div class="card p-3.5 sm:p-4">
+				<div class="flex items-center justify-between mb-2.5">
 					<div class="flex items-center gap-2">
-						<span class="flex h-7 w-7 items-center justify-center rounded-lg bg-primary/10 text-primary dark:bg-primary-500/20">
+						<span class="flex h-6 w-6 items-center justify-center rounded-lg bg-primary/10 text-primary dark:bg-primary-500/20 text-xs">
 							📅
 						</span>
-						<h2 class="font-bold text-slate-900 dark:text-white">Rincian Nomor & Tanggal</h2>
+						<h2 class="text-sm font-bold text-slate-900 dark:text-white">Rincian Nomor & Tanggal</h2>
 					</div>
-					<button type="button" class="text-xs text-slate-400 hover:text-rose-500" on:click={resetForm}>
+					<button type="button" class="text-[11px] font-medium text-slate-400 hover:text-rose-500 transition" on:click={resetForm}>
 						Kosongkan
 					</button>
 				</div>
-				<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+				<div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
 					<div>
-						<label class="field-label" for="inv-number">Nomor Faktur</label>
-						<input id="inv-number" class="field-input font-mono" bind:value={invoice.number} />
+						<label class="field-label text-xs mb-1 font-semibold" for="inv-number">Nomor Faktur</label>
+						<input id="inv-number" class="field-input py-1.5 px-3 text-xs font-mono" bind:value={invoice.number} />
 					</div>
 					<div>
-						<label class="field-label" for="select-currency">Mata Uang</label>
-						<select id="select-currency" class="field-select" bind:value={invoice.currency}>
+						<label class="field-label text-xs mb-1 font-semibold" for="select-currency">Mata Uang</label>
+						<select id="select-currency" class="field-select py-1.5 px-3 text-xs" bind:value={invoice.currency}>
 							{#each currencies as c}
 								<option value={c.code}>{c.label}</option>
 							{/each}
 						</select>
 					</div>
 					<div>
-						<label class="field-label" for="inv-date">Tanggal Terbit</label>
-						<input id="inv-date" type="date" class="field-input" bind:value={invoice.date} />
+						<label class="field-label text-xs mb-1 font-semibold" for="inv-date">Tanggal Terbit</label>
+						<input id="inv-date" type="date" class="field-input py-1.5 px-3 text-xs" bind:value={invoice.date} />
 					</div>
 					<div>
-						<label class="field-label" for="inv-due">Jatuh Tempo</label>
-						<input id="inv-due" type="date" class="field-input" bind:value={invoice.dueDate} />
+						<label class="field-label text-xs mb-1 font-semibold" for="inv-due">Jatuh Tempo</label>
+						<input id="inv-due" type="date" class="field-input py-1.5 px-3 text-xs" bind:value={invoice.dueDate} />
 					</div>
 				</div>
 			</div>
 
 			<!-- Info Entitas: Bisnis & Klien (Satu Card dengan Sistem Tab) -->
-			<div class="card p-5 border border-slate-200/80 dark:border-slate-800 shadow-soft">
+			<div class="card p-3.5 sm:p-4 border border-slate-200/80 dark:border-slate-800 shadow-soft">
 				<!-- Tab Navigation Header -->
-				<div class="flex items-center justify-between gap-3 pb-3 mb-4 border-b border-slate-100 dark:border-slate-800">
+				<div class="flex items-center justify-between gap-3 pb-2.5 mb-3 border-b border-slate-100 dark:border-slate-800">
 					<!-- Tab Buttons (Diperkecil, Disesuaikan, Dikosongkan Teks & Diganti Icon) -->
-					<div class="flex items-center gap-2.5">
-						<div class="inline-flex items-center gap-1 p-1 bg-slate-100 dark:bg-slate-800/90 rounded-xl">
+					<div class="flex items-center gap-2">
+						<div class="inline-flex items-center gap-1 p-0.5 bg-slate-100 dark:bg-slate-800/90 rounded-xl">
 							<!-- Tab 1: Bisnis -->
 							<button
 								type="button"
-								class="relative flex h-8 w-8 items-center justify-center rounded-lg transition-all {activePartyTab === 'business'
+								class="relative flex h-7.5 w-7.5 items-center justify-center rounded-lg transition-all {activePartyTab === 'business'
 									? 'bg-white dark:bg-slate-900 text-primary dark:text-primary-400 shadow-sm ring-1 ring-slate-200/60 dark:ring-slate-700/60'
 									: 'text-slate-400 hover:text-slate-700 hover:bg-white/50 dark:text-slate-500 dark:hover:text-slate-200'}"
 								on:click={() => (activePartyTab = 'business')}
 								title="Bisnis Anda{invoice.business?.name ? ` (${invoice.business.name})` : ''}"
 								aria-label="Bisnis Anda"
 							>
-								<svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+								<svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 									<path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
 								</svg>
 							</button>
@@ -854,14 +854,14 @@
 							<!-- Tab 2: Klien -->
 							<button
 								type="button"
-								class="relative flex h-8 w-8 items-center justify-center rounded-lg transition-all {activePartyTab === 'client'
+								class="relative flex h-7.5 w-7.5 items-center justify-center rounded-lg transition-all {activePartyTab === 'client'
 									? 'bg-white dark:bg-slate-900 text-emerald-600 dark:text-emerald-400 shadow-sm ring-1 ring-emerald-500/30 dark:ring-emerald-500/30'
 									: 'text-slate-400 hover:text-emerald-600 hover:bg-white/50 dark:text-slate-500 dark:hover:text-slate-200'}"
 								on:click={() => (activePartyTab = 'client')}
 								title="Klien Ditagih (PT){invoice.client?.name ? ` (${invoice.client.name})` : ''}"
 								aria-label="Klien Ditagih (PT)"
 							>
-								<svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+								<svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 									<path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
 								</svg>
 							</button>
@@ -876,7 +876,7 @@
 					<div class="flex items-center gap-2">
 						{#if activePartyTab === 'business'}
 							<!-- Logo Upload Trigger -->
-							<label class="cursor-pointer inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:underline">
+							<label class="cursor-pointer inline-flex items-center gap-1.5 text-[11px] font-semibold text-primary hover:underline">
 								<span>{invoice.business?.logo ? '📷 Ganti Logo' : '+ Upload Logo'}</span>
 								<input type="file" accept="image/*" class="hidden" on:change={handleLogoUpload} />
 							</label>
@@ -884,7 +884,7 @@
 							<!-- Quick Save PT -->
 							<button
 								type="button"
-								class="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:underline"
+								class="inline-flex items-center gap-1.5 text-[11px] font-semibold text-primary hover:underline"
 								on:click={saveCurrentClientToStore}
 								title="Simpan atau update data PT ini ke kontak pelanggan"
 							>
@@ -898,36 +898,36 @@
 				{#if activePartyTab === 'business'}
 					<div>
 						{#if invoice.business?.logo}
-							<div class="mb-4 flex items-center justify-between rounded-xl bg-slate-50 p-2.5 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80">
-								<div class="flex items-center gap-3">
-									<img src={invoice.business.logo} alt="Logo" class="h-9 w-auto max-w-[100px] object-contain rounded" />
+							<div class="mb-3 flex items-center justify-between rounded-xl bg-slate-50 p-2 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80">
+								<div class="flex items-center gap-2.5">
+									<img src={invoice.business.logo} alt="Logo" class="h-8 w-auto max-w-[90px] object-contain rounded" />
 									<div>
-										<div class="text-xs font-medium text-slate-800 dark:text-slate-200">Logo Bisnis Terpasang</div>
-										<div class="text-[10px] text-slate-400">Akan tampil otomatis di kop faktur</div>
+										<div class="text-[11px] font-medium text-slate-800 dark:text-slate-200">Logo Bisnis Terpasang</div>
+										<div class="text-[9px] text-slate-400">Akan tampil otomatis di kop faktur</div>
 									</div>
 								</div>
-								<button type="button" class="text-xs text-rose-500 hover:underline px-2 py-1" on:click={removeLogo}>
+								<button type="button" class="text-[11px] text-rose-500 hover:underline px-1.5 py-0.5" on:click={removeLogo}>
 									Hapus
 								</button>
 							</div>
 						{/if}
 
-						<div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+						<div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
 							<div>
-								<label class="field-label" for="biz-name">Nama Bisnis / Brand</label>
-								<input id="biz-name" class="field-input" bind:value={invoice.business.name} placeholder="cth. Bisnis Kamu Official" />
+								<label class="field-label text-xs mb-1 font-semibold" for="biz-name">Nama Bisnis / Brand</label>
+								<input id="biz-name" class="field-input py-1.5 px-3 text-xs" bind:value={invoice.business.name} placeholder="cth. Bisnis Kamu Official" />
 							</div>
 							<div>
-								<label class="field-label" for="biz-email">Email Bisnis</label>
-								<input id="biz-email" type="email" class="field-input" bind:value={invoice.business.email} placeholder="billing@bisniskamu.com" />
+								<label class="field-label text-xs mb-1 font-semibold" for="biz-email">Email Bisnis</label>
+								<input id="biz-email" type="email" class="field-input py-1.5 px-3 text-xs" bind:value={invoice.business.email} placeholder="billing@bisniskamu.com" />
 							</div>
 							<div class="sm:col-span-2">
-								<label class="field-label" for="biz-address">Alamat Bisnis / Kantor</label>
-								<input id="biz-address" class="field-input" bind:value={invoice.business.address} placeholder="Alamat lengkap, kota, kode pos" />
+								<label class="field-label text-xs mb-1 font-semibold" for="biz-address">Alamat Bisnis / Kantor</label>
+								<input id="biz-address" class="field-input py-1.5 px-3 text-xs" bind:value={invoice.business.address} placeholder="Alamat lengkap, kota, kode pos" />
 							</div>
 						</div>
 
-						<div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs text-slate-400">
+						<div class="mt-3 pt-2.5 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-[11px] text-slate-400">
 							<span>Profil pengirim invoice</span>
 							<button
 								type="button"
@@ -943,7 +943,7 @@
 				{:else}
 					<div>
 						<!-- Dropdown Auto-Fill PT -->
-						<div class="mb-4 rounded-xl bg-slate-50 p-2.5 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80">
+						<div class="mb-3 rounded-xl bg-slate-50 p-2 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80">
 							<div class="flex items-center justify-between mb-1">
 								<label class="field-label text-[11px] text-slate-500 mb-0" for="select-saved-pt">
 									Pilih PT / Klien Tersimpan (Auto-Fill)
@@ -952,7 +952,7 @@
 							</div>
 							<select
 								id="select-saved-pt"
-								class="field-select text-xs py-1.5"
+								class="field-select text-xs py-1 px-2.5"
 								on:change={(e) => {
 									if (e.target.value) selectClientByName(e.target.value);
 								}}
@@ -966,29 +966,29 @@
 							</select>
 						</div>
 
-						<div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+						<div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
 							<div>
-								<label class="field-label" for="client-name">Nama Klien / PT *</label>
-								<input id="client-name" class="field-input" bind:value={invoice.client.name} placeholder="cth. PT Sumber Makmur Sejahtera" />
+								<label class="field-label text-xs mb-1 font-semibold" for="client-name">Nama Klien / PT *</label>
+								<input id="client-name" class="field-input py-1.5 px-3 text-xs" bind:value={invoice.client.name} placeholder="cth. PT Sumber Makmur Sejahtera" />
 							</div>
 							<div>
-								<label class="field-label" for="client-phone">No. WhatsApp / HP PT * (Untuk Auto Kirim)</label>
+								<label class="field-label text-xs mb-1 font-semibold" for="client-phone">No. WhatsApp / HP PT *</label>
 								<div class="relative">
-									<span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-400">💬</span>
-									<input id="client-phone" class="field-input pl-8 font-mono text-xs" bind:value={invoice.client.phone} placeholder="cth. 081234567890" />
+									<span class="absolute left-2.5 top-1/2 -translate-y-1/2 text-xs text-slate-400">💬</span>
+									<input id="client-phone" class="field-input py-1.5 pl-7 pr-3 font-mono text-xs" bind:value={invoice.client.phone} placeholder="cth. 081234567890" />
 								</div>
 							</div>
 							<div>
-								<label class="field-label" for="client-email">Email Finance PT</label>
-								<input id="client-email" type="email" class="field-input text-xs" bind:value={invoice.client.email} placeholder="finance@perusahaan.co.id" />
+								<label class="field-label text-xs mb-1 font-semibold" for="client-email">Email Finance PT</label>
+								<input id="client-email" type="email" class="field-input py-1.5 px-3 text-xs" bind:value={invoice.client.email} placeholder="finance@perusahaan.co.id" />
 							</div>
 							<div>
-								<label class="field-label" for="client-address">Alamat Kantor PT</label>
-								<input id="client-address" class="field-input text-xs" bind:value={invoice.client.address} placeholder="Gedung, Lantai, Jalan, Kota" />
+								<label class="field-label text-xs mb-1 font-semibold" for="client-address">Alamat Kantor PT</label>
+								<input id="client-address" class="field-input py-1.5 px-3 text-xs" bind:value={invoice.client.address} placeholder="Gedung, Lantai, Jalan, Kota" />
 							</div>
 						</div>
 
-						<div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs text-slate-400">
+						<div class="mt-3 pt-2.5 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-[11px] text-slate-400">
 							<button
 								type="button"
 								class="text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 font-medium inline-flex items-center gap-1"
@@ -1003,29 +1003,29 @@
 			</div>
 
 			<!-- Item & Tagihan (Dengan Quick Catalog Picker) -->
-			<div class="card p-5">
-				<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
+			<div class="card p-3.5 sm:p-4">
+				<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2.5">
 					<div class="flex items-center gap-2">
-						<span class="flex h-7 w-7 items-center justify-center rounded-lg bg-primary/10 text-primary dark:bg-primary-500/20">
+						<span class="flex h-6 w-6 items-center justify-center rounded-lg bg-primary/10 text-primary dark:bg-primary-500/20 text-xs">
 							📋
 						</span>
-						<h2 class="font-bold text-slate-900 dark:text-white">Daftar Tagihan</h2>
+						<h2 class="text-sm font-bold text-slate-900 dark:text-white">Daftar Tagihan</h2>
 					</div>
 
-					<div class="flex items-center gap-2">
+					<div class="flex items-center gap-1.5">
 						<!-- Tombol Pilih dari Katalog Produk -->
 						<button
 							type="button"
-							class="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 hover:text-emerald-800 bg-emerald-50 hover:bg-emerald-100 dark:bg-emerald-500/15 dark:hover:bg-emerald-500/25 px-3 py-1.5 rounded-xl transition border border-emerald-200 dark:border-emerald-500/30"
+							class="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700 hover:text-emerald-800 bg-emerald-50 hover:bg-emerald-100 dark:bg-emerald-500/15 dark:hover:bg-emerald-500/25 px-2.5 py-1 rounded-lg transition border border-emerald-200 dark:border-emerald-500/30"
 							on:click={() => (showProductPickerModal = true)}
 						>
-							<span>📦 + Dari Katalog Produk</span>
+							<span>📦 + Katalog</span>
 						</button>
 
 						<!-- Tombol Baris Manual -->
 						<button
 							type="button"
-							class="inline-flex items-center gap-1 text-xs font-bold text-primary hover:text-primary-700 bg-primary-50 hover:bg-primary-100 dark:bg-primary-500/15 dark:hover:bg-primary-500/25 px-3 py-1.5 rounded-xl transition"
+							class="inline-flex items-center gap-1 text-[11px] font-bold text-primary hover:text-primary-700 bg-primary-50 hover:bg-primary-100 dark:bg-primary-500/15 dark:hover:bg-primary-500/25 px-2.5 py-1 rounded-lg transition"
 							on:click={() => addItem()}
 						>
 							+ Baris Manual
@@ -1033,32 +1033,32 @@
 					</div>
 				</div>
 
-				<div class="space-y-3">
+				<div class="space-y-2">
 					{#each invoice.items as item, i}
 						{@const rowTotal = (Number(item.qty) || 0) * (Number(item.price) || 0)}
-						<div class="rounded-xl border border-slate-200/80 bg-slate-50/50 p-3.5 dark:border-slate-800 dark:bg-slate-800/40">
-							<div class="flex flex-col sm:flex-row items-start sm:items-center gap-2.5">
+						<div class="rounded-xl border border-slate-200/80 bg-slate-50/50 p-2.5 dark:border-slate-800 dark:bg-slate-800/40">
+							<div class="flex flex-col sm:flex-row items-start sm:items-center gap-2">
 								<div class="flex-1 w-full">
-									<label class="field-label text-xs" for={`item-desc-${i}`}>Item #{i + 1}</label>
+									<label class="field-label text-[11px] mb-1 font-semibold" for={`item-desc-${i}`}>Item #{i + 1}</label>
 									<input
 										id={`item-desc-${i}`}
-										class="field-input"
+										class="field-input py-1.5 px-2.5 text-xs"
 										bind:value={item.description}
 										placeholder="Nama barang atau deskripsi jasa"
 									/>
 								</div>
 								<div class="flex items-end gap-2 w-full sm:w-auto">
-									<div class="w-20">
-										<label class="field-label text-xs" for={`item-qty-${i}`}>Qty</label>
-										<input id={`item-qty-${i}`} type="number" min="1" class="field-input" bind:value={item.qty} />
+									<div class="w-16 sm:w-20">
+										<label class="field-label text-[11px] mb-1 font-semibold" for={`item-qty-${i}`}>Qty</label>
+										<input id={`item-qty-${i}`} type="number" min="1" class="field-input py-1.5 px-2 text-xs text-center" bind:value={item.qty} />
 									</div>
-									<div class="w-36">
-										<label class="field-label text-xs" for={`item-price-${i}`}>Harga Satuan</label>
-										<input id={`item-price-${i}`} type="number" min="0" step="10000" class="field-input" bind:value={item.price} />
+									<div class="w-32 sm:w-36">
+										<label class="field-label text-[11px] mb-1 font-semibold" for={`item-price-${i}`}>Harga Satuan</label>
+										<input id={`item-price-${i}`} type="number" min="0" step="10000" class="field-input py-1.5 px-2.5 text-xs" bind:value={item.price} />
 									</div>
 									<button
 										type="button"
-										class="rounded-xl p-2.5 text-slate-400 hover:bg-rose-50 hover:text-rose-600 dark:hover:bg-rose-500/10 dark:hover:text-rose-400 transition"
+										class="rounded-lg p-2 text-slate-400 hover:bg-rose-50 hover:text-rose-600 dark:hover:bg-rose-500/10 dark:hover:text-rose-400 transition"
 										on:click={() => removeItem(i)}
 										title="Hapus baris item"
 										aria-label="Hapus item"
@@ -1069,7 +1069,7 @@
 									</button>
 								</div>
 							</div>
-							<div class="mt-2 flex justify-end text-xs text-slate-500 dark:text-slate-400">
+							<div class="mt-1.5 flex justify-end text-[11px] text-slate-500 dark:text-slate-400">
 								<span>Subtotal Baris: <strong class="text-slate-800 dark:text-slate-200">{formatCurrency(rowTotal, invoice.currency)}</strong></span>
 							</div>
 						</div>
@@ -1078,34 +1078,34 @@
 			</div>
 
 			<!-- Diskon, Pajak & Terbilang -->
-			<div class="card p-5">
-				<div class="flex items-center gap-2 mb-3">
-					<span class="flex h-7 w-7 items-center justify-center rounded-lg bg-primary/10 text-primary dark:bg-primary-500/20">
+			<div class="card p-3.5 sm:p-4">
+				<div class="flex items-center gap-2 mb-2.5">
+					<span class="flex h-6 w-6 items-center justify-center rounded-lg bg-primary/10 text-primary dark:bg-primary-500/20 text-xs">
 						🏷️
 					</span>
-					<h2 class="font-bold text-slate-900 dark:text-white">Diskon & Pajak</h2>
+					<h2 class="text-sm font-bold text-slate-900 dark:text-white">Diskon & Pajak</h2>
 				</div>
 
-				<div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pb-4 border-b border-slate-100 dark:border-slate-800">
+				<div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pb-2.5 border-b border-slate-100 dark:border-slate-800">
 					<div>
-						<label class="field-label" for="disc-type">Jenis Diskon</label>
-						<select id="disc-type" class="field-select" bind:value={invoice.discount.type}>
+						<label class="field-label text-xs mb-1 font-semibold" for="disc-type">Jenis Diskon</label>
+						<select id="disc-type" class="field-select py-1.5 px-2.5 text-xs" bind:value={invoice.discount.type}>
 							<option value="percent">Persentase (%)</option>
 							<option value="fixed">Nominal Tetap ({invoice.currency})</option>
 						</select>
 					</div>
 					<div>
-						<label class="field-label" for="disc-val">Nilai Diskon</label>
-						<input id="disc-val" type="number" min="0" class="field-input" bind:value={invoice.discount.value} placeholder="0" />
+						<label class="field-label text-xs mb-1 font-semibold" for="disc-val">Nilai Diskon</label>
+						<input id="disc-val" type="number" min="0" class="field-input py-1.5 px-2.5 text-xs" bind:value={invoice.discount.value} placeholder="0" />
 					</div>
 					<div>
-						<label class="field-label" for="inv-tax">Pajak / PPN (%)</label>
-						<input id="inv-tax" type="number" min="0" max="100" class="field-input" bind:value={invoice.taxRate} placeholder="0" />
+						<label class="field-label text-xs mb-1 font-semibold" for="inv-tax">Pajak / PPN (%)</label>
+						<input id="inv-tax" type="number" min="0" max="100" class="field-input py-1.5 px-2.5 text-xs" bind:value={invoice.taxRate} placeholder="0" />
 					</div>
 				</div>
 
 				<!-- Live calculation breakdown box -->
-				<div class="mt-4 space-y-2 rounded-xl bg-slate-50 p-4 dark:bg-slate-800/60 text-sm">
+				<div class="mt-2.5 space-y-1.5 rounded-xl bg-slate-50 p-3 dark:bg-slate-800/60 text-xs">
 					<div class="flex justify-between text-slate-600 dark:text-slate-300">
 						<span>Subtotal ({invoice.items.length} item)</span>
 						<span class="font-medium">{formatCurrency(totals.subtotal, invoice.currency)}</span>
@@ -1122,14 +1122,14 @@
 							<span>+{formatCurrency(totals.taxAmount, invoice.currency)}</span>
 						</div>
 					{/if}
-					<div class="flex justify-between border-t border-slate-200 pt-2 text-base font-black text-slate-900 dark:border-slate-700 dark:text-white">
+					<div class="flex justify-between border-t border-slate-200 pt-1.5 text-sm font-black text-slate-900 dark:border-slate-700 dark:text-white">
 						<span>Total Tagihan Akhir</span>
-						<span class="text-primary text-xl">{formatCurrency(totals.total, invoice.currency)}</span>
+						<span class="text-primary text-base font-black">{formatCurrency(totals.total, invoice.currency)}</span>
 					</div>
 
 					<!-- Teks Terbilang Resmi -->
 					{#if invoice.currency === 'IDR'}
-						<div class="mt-3 pt-2 border-t border-slate-200/80 dark:border-slate-700/80 text-xs">
+						<div class="mt-2 pt-1.5 border-t border-slate-200/80 dark:border-slate-700/80 text-[11px]">
 							<span class="font-bold text-slate-700 dark:text-slate-300">Terbilang:</span>
 							<span class="italic text-slate-600 dark:text-slate-400 ml-1">{angkaTerbilang(totals.total)}</span>
 						</div>
@@ -1138,54 +1138,54 @@
 			</div>
 
 			<!-- Catatan & Bank Quick Inserter -->
-			<div class="card p-5">
-				<div class="flex items-center justify-between mb-2">
-					<label class="field-label font-bold text-slate-900 dark:text-white mb-0" for="notes">
+			<div class="card p-3.5 sm:p-4">
+				<div class="flex items-center justify-between mb-1.5">
+					<label class="field-label text-xs font-bold text-slate-900 dark:text-white mb-0" for="notes">
 						Catatan Pembayaran & Rekening
 					</label>
 				</div>
 
 				<!-- Bank Inserter Chips -->
-				<div class="mb-3 flex flex-wrap items-center gap-1.5 text-xs">
-					<span class="text-slate-400">Sisipkan Bank:</span>
+				<div class="mb-2 flex flex-wrap items-center gap-1 text-[11px]">
+					<span class="text-slate-400">Sisipkan:</span>
 					<button
 						type="button"
-						class="rounded-md bg-slate-100 px-2.5 py-1 text-slate-700 hover:bg-primary-50 hover:text-primary dark:bg-slate-800 dark:text-slate-300 transition font-medium"
+						class="rounded-md bg-slate-100 px-2 py-0.5 text-slate-700 hover:bg-primary-50 hover:text-primary dark:bg-slate-800 dark:text-slate-300 transition font-medium"
 						on:click={() => insertBankNote('BCA', '8870-1234-56')}
 					>
 						+ BCA
 					</button>
 					<button
 						type="button"
-						class="rounded-md bg-slate-100 px-2.5 py-1 text-slate-700 hover:bg-primary-50 hover:text-primary dark:bg-slate-800 dark:text-slate-300 transition font-medium"
+						class="rounded-md bg-slate-100 px-2 py-0.5 text-slate-700 hover:bg-primary-50 hover:text-primary dark:bg-slate-800 dark:text-slate-300 transition font-medium"
 						on:click={() => insertBankNote('Mandiri', '142-00-112233-4')}
 					>
 						+ Mandiri
 					</button>
 					<button
 						type="button"
-						class="rounded-md bg-slate-100 px-2.5 py-1 text-slate-700 hover:bg-primary-50 hover:text-primary dark:bg-slate-800 dark:text-slate-300 transition font-medium"
+						class="rounded-md bg-slate-100 px-2 py-0.5 text-slate-700 hover:bg-primary-50 hover:text-primary dark:bg-slate-800 dark:text-slate-300 transition font-medium"
 						on:click={() => insertBankNote('BNI', '088-999-7766')}
 					>
 						+ BNI
 					</button>
 					<button
 						type="button"
-						class="rounded-md bg-slate-100 px-2.5 py-1 text-slate-700 hover:bg-primary-50 hover:text-primary dark:bg-slate-800 dark:text-slate-300 transition font-medium"
+						class="rounded-md bg-slate-100 px-2 py-0.5 text-slate-700 hover:bg-primary-50 hover:text-primary dark:bg-slate-800 dark:text-slate-300 transition font-medium"
 						on:click={() => insertBankNote('BRI', '0341-01-002233-50-1')}
 					>
 						+ BRI
 					</button>
 					<button
 						type="button"
-						class="rounded-md bg-slate-100 px-2.5 py-1 text-slate-700 hover:bg-primary-50 hover:text-primary dark:bg-slate-800 dark:text-slate-300 transition font-medium"
+						class="rounded-md bg-slate-100 px-2 py-0.5 text-slate-700 hover:bg-primary-50 hover:text-primary dark:bg-slate-800 dark:text-slate-300 transition font-medium"
 						on:click={() => insertBankNote('QRIS', 'Scan QRIS terlampir')}
 					>
 						+ QRIS
 					</button>
 				</div>
 
-				<textarea id="notes" class="field-input" rows="3" bind:value={invoice.notes} placeholder="cth. Transfer ke Rekening BCA: 1234567890 a.n Nama Anda"></textarea>
+				<textarea id="notes" class="field-input py-2 px-3 text-xs" rows="2" bind:value={invoice.notes} placeholder="cth. Transfer ke Rekening BCA: 1234567890 a.n Nama Anda"></textarea>
 			</div>
 		</div>
 
