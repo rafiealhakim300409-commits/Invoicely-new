@@ -81,6 +81,12 @@
 		return matchSearch;
 	});
 
+	$: countAll = $invoices.length;
+	$: countUnpaid = $invoices.filter((i) => ['unpaid', 'Belum Dibayar'].includes(i.status)).length;
+	$: countPaid = $invoices.filter((i) => ['paid', 'Lunas'].includes(i.status)).length;
+	$: countOverdue = $invoices.filter((i) => ['overdue', 'Terkirim'].includes(i.status)).length;
+	$: countDraft = $invoices.filter((i) => ['draft', 'Draft'].includes(i.status)).length;
+
 	function getClientName(inv) {
 		return typeof inv.client === 'string' ? inv.client : (inv.client?.name || 'Klien');
 	}
@@ -207,47 +213,86 @@
 <AppShell title="Daftar Invoice">
 	<!-- Top Bar & Search -->
 	<div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-		<!-- Filter Tabs -->
-		<div class="flex items-center gap-1 overflow-x-auto rounded-xl bg-slate-100 p-1 dark:bg-slate-800">
+		<!-- Filter Tabs (Perkecil, Disesuaikan, Kosongkan Teks & Diganti Icon) -->
+		<div class="inline-flex items-center gap-1 rounded-xl bg-slate-100 p-1 dark:bg-slate-800 shrink-0 shadow-inner/10">
+			<!-- Tab: Semua -->
 			<button
 				type="button"
-				class="rounded-lg px-3 py-1.5 text-xs font-semibold transition
-					{activeTab === 'all' ? 'bg-white text-slate-900 shadow-soft dark:bg-surfaceDark dark:text-white' : 'text-slate-500 hover:text-slate-700'}"
+				class="relative flex h-8 w-8 items-center justify-center rounded-lg transition-all
+					{activeTab === 'all'
+						? 'bg-white text-primary shadow-sm ring-1 ring-slate-200/60 dark:bg-surfaceDark dark:text-primary-400 dark:ring-slate-700'
+						: 'text-slate-400 hover:text-slate-700 hover:bg-slate-200/50 dark:text-slate-500 dark:hover:text-slate-200 dark:hover:bg-slate-700/50'}"
 				on:click={() => (activeTab = 'all')}
+				title="Semua ({countAll})"
+				aria-label="Semua Invoice"
 			>
-				Semua ({$invoices.length})
+				<svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+					<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+				</svg>
 			</button>
+
+			<!-- Tab: Belum Bayar -->
 			<button
 				type="button"
-				class="rounded-lg px-3 py-1.5 text-xs font-semibold transition
-					{activeTab === 'unpaid' ? 'bg-white text-slate-900 shadow-soft dark:bg-surfaceDark dark:text-white' : 'text-slate-500 hover:text-slate-700'}"
+				class="relative flex h-8 w-8 items-center justify-center rounded-lg transition-all
+					{activeTab === 'unpaid'
+						? 'bg-white text-amber-600 shadow-sm ring-1 ring-slate-200/60 dark:bg-surfaceDark dark:text-amber-400 dark:ring-slate-700'
+						: 'text-slate-400 hover:text-amber-600 hover:bg-slate-200/50 dark:text-slate-500 dark:hover:text-amber-400 dark:hover:bg-slate-700/50'}"
 				on:click={() => (activeTab = 'unpaid')}
+				title="Belum Bayar ({countUnpaid})"
+				aria-label="Invoice Belum Bayar"
 			>
-				Belum Bayar
+				<svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+					<path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+				</svg>
 			</button>
+
+			<!-- Tab: Lunas -->
 			<button
 				type="button"
-				class="rounded-lg px-3 py-1.5 text-xs font-semibold transition
-					{activeTab === 'paid' ? 'bg-white text-slate-900 shadow-soft dark:bg-surfaceDark dark:text-white' : 'text-slate-500 hover:text-slate-700'}"
+				class="relative flex h-8 w-8 items-center justify-center rounded-lg transition-all
+					{activeTab === 'paid'
+						? 'bg-white text-emerald-600 shadow-sm ring-1 ring-slate-200/60 dark:bg-surfaceDark dark:text-emerald-400 dark:ring-slate-700'
+						: 'text-slate-400 hover:text-emerald-600 hover:bg-slate-200/50 dark:text-slate-500 dark:hover:text-emerald-400 dark:hover:bg-slate-700/50'}"
 				on:click={() => (activeTab = 'paid')}
+				title="Lunas ({countPaid})"
+				aria-label="Invoice Lunas"
 			>
-				Lunas
+				<svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+					<path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+				</svg>
 			</button>
+
+			<!-- Tab: Terlambat -->
 			<button
 				type="button"
-				class="rounded-lg px-3 py-1.5 text-xs font-semibold transition
-					{activeTab === 'overdue' ? 'bg-white text-slate-900 shadow-soft dark:bg-surfaceDark dark:text-white' : 'text-slate-500 hover:text-slate-700'}"
+				class="relative flex h-8 w-8 items-center justify-center rounded-lg transition-all
+					{activeTab === 'overdue'
+						? 'bg-white text-rose-600 shadow-sm ring-1 ring-slate-200/60 dark:bg-surfaceDark dark:text-rose-400 dark:ring-slate-700'
+						: 'text-slate-400 hover:text-rose-600 hover:bg-slate-200/50 dark:text-slate-500 dark:hover:text-rose-400 dark:hover:bg-slate-700/50'}"
 				on:click={() => (activeTab = 'overdue')}
+				title="Terlambat ({countOverdue})"
+				aria-label="Invoice Terlambat"
 			>
-				Terlambat
+				<svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+					<path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+				</svg>
 			</button>
+
+			<!-- Tab: Draft -->
 			<button
 				type="button"
-				class="rounded-lg px-3 py-1.5 text-xs font-semibold transition
-					{activeTab === 'draft' ? 'bg-white text-slate-900 shadow-soft dark:bg-surfaceDark dark:text-white' : 'text-slate-500 hover:text-slate-700'}"
+				class="relative flex h-8 w-8 items-center justify-center rounded-lg transition-all
+					{activeTab === 'draft'
+						? 'bg-white text-indigo-600 shadow-sm ring-1 ring-slate-200/60 dark:bg-surfaceDark dark:text-indigo-400 dark:ring-slate-700'
+						: 'text-slate-400 hover:text-indigo-600 hover:bg-slate-200/50 dark:text-slate-500 dark:hover:text-indigo-400 dark:hover:bg-slate-700/50'}"
 				on:click={() => (activeTab = 'draft')}
+				title="Draft ({countDraft})"
+				aria-label="Invoice Draft"
 			>
-				Draft
+				<svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+					<path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+				</svg>
 			</button>
 		</div>
 
