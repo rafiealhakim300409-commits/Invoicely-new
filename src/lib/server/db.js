@@ -6,7 +6,7 @@ const { Pool } = pg;
 const connectionString =
 	env.DATABASE_URL ||
 	process.env.DATABASE_URL ||
-	'postgresql://postgres:rjZrCMtjDUqBbWktmDTyKLOjXxbwGsns@iriguchi.proxy.rlwy.net:21397/railway';
+	'postgresql://neondb_owner:npg_yxCSs86EzWMP@ep-delicate-darkness-beek94wl-pooler.c-9.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require';
 
 export const pool = new Pool({
 	connectionString,
